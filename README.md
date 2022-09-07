@@ -1,4 +1,4 @@
-# Typescript-Express-Mongo-Zod REST Boilerplate
+# Car Garage Rest API
 
 Testing out patterns and experimenting with ideas
 

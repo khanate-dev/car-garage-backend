@@ -1,9 +1,7 @@
 {
-	"name": "typescript-express-boilerplate",
+	"name": "car-garage-backend",
 	"version": "1.0.0",
 	"main": "build/src/app.js",
-	"author": "Saad Khan",
-	"license": "MIT",
 	"scripts": {
 		"dev": "ts-node-dev --respawn --transpile-only --require tsconfig-paths/register --require dotenv/config src/app.ts",
 		"build": "rimraf ./build && tsc",
