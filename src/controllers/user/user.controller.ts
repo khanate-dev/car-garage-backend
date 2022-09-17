@@ -1,10 +1,19 @@
-import { CreateUserSchema } from '~/schemas/user';
+import { ApiError } from '~/errors';
+import {
+	CreateUserSchema,
+	GetUserSchema,
+	GetUsersSchema,
+} from '~/schemas/user';
 
-import { createUser } from '~/services/user';
+import { createUser, findUserById, findUsers } from '~/services/user';
 
-import { PublicHandler, Status } from '~/types';
+import {
+	UnAuthenticatedHandler,
+	Status,
+	AuthenticatedHandler,
+} from '~/types';
 
-export const createUserHandler: PublicHandler<CreateUserSchema> = async (
+export const createUserHandler: UnAuthenticatedHandler<CreateUserSchema> = async (
 	request
 ) => {
 	const user = await createUser(request.body);
@@ -12,4 +21,17 @@ export const createUserHandler: PublicHandler<CreateUserSchema> = async (
 		status: Status.CREATED,
 		json: user,
 	};
+};
+
+export const getUsersHandler: AuthenticatedHandler<GetUsersSchema> = async () => {
+	const users = await findUsers();
+	return users;
+};
+
+export const getUserHandler: AuthenticatedHandler<GetUserSchema> = async (
+	request
+) => {
+	const user = await findUserById(request.params._id);
+	if (!user) throw new ApiError(Status.NOT_FOUND, 'the requested user was not found');
+	return user;
 };
