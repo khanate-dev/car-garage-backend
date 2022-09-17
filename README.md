@@ -3,6 +3,7 @@
 Testing out patterns and experimenting with ideas
 
 ## Stack
+
 - Typescript
 - Express
 - Mongo with Mongoose
@@ -13,6 +14,7 @@ Testing out patterns and experimenting with ideas
 ---
 
 ## Scripts
+
 Start in Development mode: `yarn dev`
 
 Build: `yarn build`
