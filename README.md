@@ -31,7 +31,9 @@ Run tests: `yarn test`
 
 Environment variables are securely stored with dotenv-vault.
 
-Environment example format: [![fork with dotenv-vault](https://badge.dotenv.org/fork.svg?r=1)](https://vault.dotenv.org/project/vlt_2044fec0a36deab104f24264965c998a51566ae69c87c56d8405e2bc1fde303e/example)
+([![fork with dotenv-vault](https://badge.dotenv.org/fork.svg?r=1)](https://vault.dotenv.org/project/vlt_ae7d21e19c70297a28e4913d26f52df678ca5917141844f8e861571ef8998303/example))
+
+Login to dotenv-vault: `yarn env:login`
 
 Open dotenv-vault: `yarn env:open`
 
