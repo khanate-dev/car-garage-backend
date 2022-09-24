@@ -15,9 +15,11 @@ export const {
 } = getModelSchema({
 	title: z.string(),
 	description: z.string().optional(),
-	price: z.number().positive(),
+	minPrice: z.number().positive(),
+	maxPrice: z.number().positive(),
 	image: z.string().url().optional(),
 	isFeatured: z.boolean().optional(),
+	category: z.enum(categories),
 	buyerId: z.instanceof(Types.ObjectId).optional(),
 	sellerId: z.instanceof(Types.ObjectId),
 	makeTypeId: z.instanceof(Types.ObjectId),
@@ -39,13 +41,27 @@ const productSchema = new Schema<Product>(
 			type: String,
 			required: false,
 		},
-		price: {
+		minPrice: {
+			type: Number,
+			required: true,
+		},
+		maxPrice: {
 			type: Number,
 			required: true,
 		},
 		image: {
 			type: String,
 			required: false,
+		},
+		isFeatured: {
+			type: Boolean,
+			required: false,
+			default: false,
+		},
+		category: {
+			type: String,
+			enum: categories,
+			required: true,
 		},
 		buyerId: {
 			type: Schema.Types.ObjectId,
@@ -65,12 +81,12 @@ const productSchema = new Schema<Product>(
 		modelId: {
 			type: Schema.Types.ObjectId,
 			ref: 'Model',
-			required: true,
+			required: false,
 		},
 		bodyTypeId: {
 			type: Schema.Types.ObjectId,
 			ref: 'BodyType',
-			required: true,
+			required: false,
 		},
 	},
 	{
