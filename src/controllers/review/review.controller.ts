@@ -36,9 +36,13 @@ export const createReviewHandler: AuthenticatedHandler<CreateReviewSchema> = asy
 	};
 };
 
-export const getReviewsHandler: AuthenticatedHandler<GetReviewsSchema> = async () => {
-
-	const reviews = await findReviews();
+export const getReviewsHandler: AuthenticatedHandler<GetReviewsSchema> = async (
+	_request,
+	response
+) => {
+	const user = response.locals.user;
+	const options = user.role === 'admin' ? {} : { userId: user._id };
+	const reviews = await findReviews(options);
 
 	if (!reviews) throw new ApiError(Status.NOT_FOUND);
 	return reviews;
