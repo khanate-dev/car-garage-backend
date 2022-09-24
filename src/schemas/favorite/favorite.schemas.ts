@@ -34,6 +34,13 @@ export const getFavoritesSchema = createRouteSchema({
 
 export type GetFavoritesSchema = z.infer<typeof getFavoritesSchema>;
 
+export const getFavoriteSchema = createRouteSchema({
+	params,
+	response,
+});
+
+export type GetFavoriteSchema = z.infer<typeof getFavoriteSchema>;
+
 export const deleteFavoriteSchema = createRouteSchema({
 	params,
 	response,

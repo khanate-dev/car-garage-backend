@@ -4,6 +4,7 @@ import {
 	CreateFavoriteSchema,
 	DeleteFavoriteSchema,
 	GetFavoritesSchema,
+	GetFavoriteSchema,
 } from '~/schemas/favorite';
 
 import {
@@ -42,6 +43,24 @@ export const getFavoritesHandler: AuthenticatedHandler<GetFavoritesSchema> = asy
 	return favorites;
 
 };
+
+
+export const getFavoriteHandler: AuthenticatedHandler<GetFavoriteSchema> = async (
+	request,
+	response
+) => {
+
+	const _id = request.params._id;
+	const user = response.locals.user;
+	const options = user.role === 'admin' ? { _id } : { _id, userId: user._id };
+	const favorite = await findFavorite(options);
+
+	if (!favorite) throw new ApiError(Status.NOT_FOUND);
+
+	return favorite;
+
+};
+
 
 export const deleteFavoriteHandler: AuthenticatedHandler<DeleteFavoriteSchema> = async (
 	request,
