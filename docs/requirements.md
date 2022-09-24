@@ -89,50 +89,72 @@ AutoDeals.pk is a Pakistan primarily based car platform. That affords the offeri
 ## Models
 
 ### users
-- name = string *
-- phoneNumber = string *
-- email = string *
-- password = string *
-- role = enum('admin', 'user', 'guest') *
+```ts
+interface {
+	name: string,
+	phoneNumber: string,
+	email: string,
+	password: string,
+	role: 'admin' | 'user' | 'guest',
+}
+```
 
 ### products
-- title = string *
-- category = enum('car', 'bike', 'auto-parts') *
-- description = string 
-- price = number *
-- image = string *
-- isFeatured = boolean (default = false)
-- isSold = boolean (default = false)
-- buyerId = foriegnKey (required when marking as sold)
-- sellerId = foriegnKey *
-- currencyID = foriegnKey *
-- makeTypeId = foriegnKey *
-- modelId = foriegnKey *
-- bodyTypeId = foriegnKey *
-
-
-### currencies
-- name = string (unique) *
-- symbol = string (unique) *
+```ts
+interface {
+	title: string,
+	category: 'car' | 'bike' | 'auto-parts',
+	description?: string,
+	price: number,
+	image: string,
+	isFeatured?: boolean = false,
+	buyerId?: ObjectID,
+	sellerId: ObjectID,
+	makeTypeId: ObjectID,
+	modelId?: ObjectID,
+	bodyTypeId?: ObjectID,
+	role: 'admin' | 'user' | 'guest',
+}
+```
 
 ### makeTypes
-- name = string (unique) *
+```ts
+interface {
+	name: string,
+}
+```
 
 ### models
-- name = string (composite with year) *
-- year = number (composite with name) *
-- makeTypeId = foriegnKey *
+```ts
+interface {
+	name: string,
+	year: number,
+	makeTypeId: ObjectID,
+}
+```
 
 ### bodyTypes
-- name = string (unique) *
-- modelId = foriegnKey *
+```ts
+interface {
+	name: string,
+	modelId: ObjectID,
+}
+```
 
-### favourites
-- bodyTypeId = foriegnKey *
-- userId = foriegnKey *
+### favorites
+```ts
+interface {
+	bodyTypeId: ObjectID,
+	userId: ObjectID,
+}
+```
 
 ### reviews
-- userId = foriegnKey *
-- bodyTypeId = foriegnKey *
-- rating = number (min: 1, max: 5) *
-- description = string
+```ts
+interface {
+	userId: ObjectID,
+	bodyTypeId: ObjectID,
+	rating: 1 | 2 | 3 | 4 | 5,
+	description?: string,
+}
+```
