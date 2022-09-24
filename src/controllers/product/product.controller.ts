@@ -24,7 +24,7 @@ export const createProductHandler: AuthenticatedHandler<CreateProductSchema> = a
 ) => {
 	const product = await createProduct({
 		...request.body,
-		user: response.locals.user._id,
+		sellerId: response.locals.user._id,
 	});
 	return {
 		status: Status.CREATED,
@@ -78,7 +78,7 @@ export const updateProductHandler: AuthenticatedHandler<UpdateProductSchema> = a
 	});
 
 	if (!product) throw new ApiError(Status.NOT_FOUND);
-	if (product.user.toJSON() !== userId) throw new ApiError(Status.FORBIDDEN);
+	if (product.sellerId.toJSON() !== userId) throw new ApiError(Status.FORBIDDEN);
 
 	const updatedProduct = await findAndUpdateProduct(
 		{ _id },
@@ -106,7 +106,7 @@ export const deleteProductHandler: AuthenticatedHandler<DeleteProductSchema> = a
 	});
 
 	if (!product) throw new ApiError(Status.NOT_FOUND);
-	if (product.user.toJSON() !== userId) throw new ApiError(Status.FORBIDDEN);
+	if (product.sellerId.toJSON() !== userId) throw new ApiError(Status.FORBIDDEN);
 
 	const deletedProduct = await deleteProduct({ _id });
 
