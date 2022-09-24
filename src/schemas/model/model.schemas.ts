@@ -12,17 +12,23 @@ const params = z.strictObject({
 	),
 });
 
+const body = modelSansMetaModelSchema.extend({
+	makeTypeId: z.string().refine(
+		isValidObjectId,
+		'parameter must be a valid mongo ObjectID'
+	),
+});
 const response = modelModelSchema;
 
 export const createModelSchema = createRouteSchema({
-	body: modelSansMetaModelSchema,
+	body,
 	response,
 });
 
 export type CreateModelSchema = z.infer<typeof createModelSchema>;
 
 export const updateModelSchema = createRouteSchema({
-	body: modelSansMetaModelSchema,
+	body,
 	params,
 	response,
 });

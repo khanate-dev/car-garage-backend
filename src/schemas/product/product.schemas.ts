@@ -16,7 +16,7 @@ const params = z.strictObject({
 const response = productModelSchema;
 
 export const createProductSchema = createRouteSchema({
-	body: productSansMetaModelSchema,
+	body: productSansMetaModelSchema.extend({}),
 	response,
 });
 
