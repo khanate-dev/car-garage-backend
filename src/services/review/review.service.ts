@@ -15,11 +15,11 @@ export const createReview = async (
 };
 
 export const findReviews = async (
-	query: FilterQuery<Review>,
+	query?: FilterQuery<Review>,
 	options?: QueryOptions
 ): Promise<null | Review[]> => {
 	const reviews = await ReviewModel.find(
-		query,
+		query ?? {},
 		{},
 		options
 	).lean();
@@ -27,11 +27,11 @@ export const findReviews = async (
 };
 
 export const findReview = async (
-	query: FilterQuery<Review>,
+	query?: FilterQuery<Review>,
 	options?: QueryOptions
 ): Promise<null | Review> => {
 	const review = await ReviewModel.findOne(
-		query,
+		query ?? {},
 		{},
 		options
 	).lean();

@@ -15,11 +15,11 @@ export const createModel = async (
 };
 
 export const findModels = async (
-	query: FilterQuery<Model>,
+	query?: FilterQuery<Model>,
 	options?: QueryOptions
 ): Promise<null | Model[]> => {
 	const models = await ModelModel.find(
-		query,
+		query ?? {},
 		{},
 		options
 	).lean();

@@ -15,11 +15,11 @@ export const createBodyType = async (
 };
 
 export const findBodyTypes = async (
-	query: FilterQuery<BodyType>,
+	query?: FilterQuery<BodyType>,
 	options?: QueryOptions
 ): Promise<null | BodyType[]> => {
 	const bodyTypes = await BodyTypeModel.find(
-		query,
+		query ?? {},
 		{},
 		options
 	).lean();

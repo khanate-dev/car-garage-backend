@@ -15,11 +15,11 @@ export const createProduct = async (
 };
 
 export const findProducts = async (
-	query: FilterQuery<Product>,
+	query?: FilterQuery<Product>,
 	options?: QueryOptions
 ): Promise<null | Product[]> => {
 	const products = await ProductModel.find(
-		query,
+		query ?? {},
 		{},
 		options
 	).lean();

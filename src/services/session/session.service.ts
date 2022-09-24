@@ -19,11 +19,11 @@ export const createSession = async (
 };
 
 export const findSessions = async (
-	query: FilterQuery<Session>,
+	query?: FilterQuery<Session>,
 	options?: QueryOptions
 ): Promise<Session[]> => {
 	const sessions = await SessionModel.find(
-		query,
+		query ?? {},
 		{},
 		options
 	).lean();

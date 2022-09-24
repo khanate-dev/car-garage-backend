@@ -15,11 +15,11 @@ export const createMakeType = async (
 };
 
 export const findMakeTypes = async (
-	query: FilterQuery<MakeType>,
+	query?: FilterQuery<MakeType>,
 	options?: QueryOptions
 ): Promise<null | MakeType[]> => {
 	const makeTypes = await MakeTypeModel.find(
-		query,
+		query ?? {},
 		{},
 		options
 	).lean();

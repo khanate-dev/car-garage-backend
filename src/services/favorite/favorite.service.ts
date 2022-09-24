@@ -15,11 +15,11 @@ export const createFavorite = async (
 };
 
 export const findFavorites = async (
-	query: FilterQuery<Favorite>,
+	query?: FilterQuery<Favorite>,
 	options?: QueryOptions
 ): Promise<null | Favorite[]> => {
 	const favorites = await FavoriteModel.find(
-		query,
+		query ?? {},
 		{},
 		options
 	).lean();
