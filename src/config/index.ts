@@ -1,7 +1,2 @@
-import constants from './constants.config';
-import config from './server.config';
-
-export {
-	constants,
-	config,
-};
+export * from './constants.config';
+export * from './server.config';
