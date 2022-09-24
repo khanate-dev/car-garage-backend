@@ -37,10 +37,9 @@ export const getProductsHandler: AuthenticatedHandler<GetProductsSchema> = async
 	response
 ) => {
 
-	const userId = response.locals.user._id;
-	const products = await findProducts({
-		user: userId,
-	});
+	const user = response.locals.user;
+	const options = user.role === 'admin' ? {} : { userId: user._id };
+	const products = await findProducts(options);
 
 	if (!products) throw new ApiError(Status.NOT_FOUND);
 	return products;
