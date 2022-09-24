@@ -10,14 +10,6 @@ const params = z.strictObject({
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'
 	),
-	userId: z.string().refine(
-		isValidObjectId,
-		'parameter must be a valid mongo ObjectID'
-	),
-	bodyTypeId: z.string().refine(
-		isValidObjectId,
-		'parameter must be a valid mongo ObjectID'
-	),
 });
 
 const response = favoriteModelSchema;

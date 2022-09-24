@@ -11,26 +11,6 @@ const params = z.strictObject({
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'
 	),
-	buyerId: z.string().refine(
-		isValidObjectId,
-		'parameter must be a valid mongo ObjectID'
-	),
-	sellerId: z.string().refine(
-		isValidObjectId,
-		'parameter must be a valid mongo ObjectID'
-	),
-	makeTypeId: z.string().refine(
-		isValidObjectId,
-		'parameter must be a valid mongo ObjectID'
-	),
-	modelId: z.string().refine(
-		isValidObjectId,
-		'parameter must be a valid mongo ObjectID'
-	),
-	bodyTypeId: z.string().refine(
-		isValidObjectId,
-		'parameter must be a valid mongo ObjectID'
-	),
 });
 
 const response = productModelSchema;

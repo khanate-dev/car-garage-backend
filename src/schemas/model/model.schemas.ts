@@ -1,4 +1,4 @@
-import { isValidObjectId, Types } from 'mongoose';
+import { isValidObjectId } from 'mongoose';
 import z from 'zod';
 
 import { createRouteSchema } from '~/helpers/schema';
@@ -7,10 +7,6 @@ import { modelModelSchema, modelSansMetaModelSchema } from '~/models';
 
 const params = z.strictObject({
 	_id: z.string().refine(
-		isValidObjectId,
-		'parameter must be a valid mongo ObjectID'
-	),
-	makeTypeId: z.string().refine(
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'
 	),
