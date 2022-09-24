@@ -41,6 +41,11 @@ const userSchema = new Schema<User>(
 			required: true,
 			unique: true,
 		},
+		phoneNumber: {
+			type: String,
+			required: true,
+			unique: true,
+		},
 		name: {
 			type: String,
 			required: true,
