@@ -3,15 +3,26 @@ import z from 'zod';
 
 import { getModelSchema } from '~/helpers/schema';
 
+export const categories = [
+	'car',
+	'bike',
+	'auto-parts',
+] as const;
+
 export const {
 	sansMetaModelSchema: productSansMetaModelSchema,
 	modelSchema: productModelSchema,
 } = getModelSchema({
-	user: z.instanceof(Types.ObjectId),
 	title: z.string(),
-	description: z.string(),
+	description: z.string().optional(),
 	price: z.number().positive(),
-	image: z.string().url(),
+	image: z.string().url().optional(),
+	isFeatured: z.boolean().optional(),
+	buyerId: z.instanceof(Types.ObjectId),
+	sellerId: z.instanceof(Types.ObjectId),
+	makeTypeId: z.instanceof(Types.ObjectId),
+	modelId: z.instanceof(Types.ObjectId),
+	bodyTypeId: z.instanceof(Types.ObjectId),
 });
 
 export type ProductSansMeta = z.infer<typeof productSansMetaModelSchema>;
@@ -20,18 +31,13 @@ export type Product = z.infer<typeof productModelSchema>;
 
 const productSchema = new Schema<Product>(
 	{
-		user: {
-			type: Schema.Types.ObjectId,
-			ref: 'User',
-		},
 		title: {
 			type: String,
 			required: true,
-			unique: true,
 		},
 		description: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		price: {
 			type: Number,
@@ -39,6 +45,31 @@ const productSchema = new Schema<Product>(
 		},
 		image: {
 			type: String,
+			required: false,
+		},
+		buyerId: {
+			type: Schema.Types.ObjectId,
+			ref: 'User',
+			required: false,
+		},
+		sellerId: {
+			type: Schema.Types.ObjectId,
+			ref: 'User',
+			required: true,
+		},
+		makeTypeId: {
+			type: Schema.Types.ObjectId,
+			ref: 'MakeType',
+			required: true,
+		},
+		modelId: {
+			type: Schema.Types.ObjectId,
+			ref: 'Model',
+			required: true,
+		},
+		bodyTypeId: {
+			type: Schema.Types.ObjectId,
+			ref: 'BodyType',
 			required: true,
 		},
 	},

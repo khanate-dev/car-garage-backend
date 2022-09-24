@@ -133,8 +133,7 @@ interface {
   sellerId: ObjectID,
   makeTypeId: ObjectID,
   modelId?: ObjectID,
-  bodyTypeId?: ObjectID,
-  role: 'admin' | 'user' | 'guest',
+  bodyTypeId?: ObjectID
 }
 ```
 
