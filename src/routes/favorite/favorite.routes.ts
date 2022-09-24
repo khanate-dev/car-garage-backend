@@ -1,8 +1,6 @@
 import {
 	createFavoriteSchema,
 	deleteFavoriteSchema,
-	getFavoriteSchema,
-	updateFavoriteSchema,
 	getFavoritesSchema,
 } from '~/schemas/favorite';
 
@@ -10,8 +8,6 @@ import {
 import {
 	createFavoriteHandler,
 	deleteFavoriteHandler,
-	getFavoriteHandler,
-	updateFavoriteHandler,
 	getFavoritesHandler,
 } from '~/controllers/favorite';
 
@@ -30,20 +26,6 @@ const favoriteRoutes: Route[] = [
 		path: '/',
 		schema: getFavoritesSchema,
 		handler: getFavoritesHandler,
-		isAuthenticated: true,
-	},
-	{
-		method: 'get',
-		path: '/:_id',
-		schema: getFavoriteSchema,
-		handler: getFavoriteHandler,
-		isAuthenticated: true,
-	},
-	{
-		method: 'put',
-		path: '/:_id',
-		schema: updateFavoriteSchema,
-		handler: updateFavoriteHandler,
 		isAuthenticated: true,
 	},
 	{

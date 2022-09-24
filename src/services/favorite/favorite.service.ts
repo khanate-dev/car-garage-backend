@@ -2,7 +2,6 @@ import {
 	DocumentDefinition,
 	FilterQuery,
 	QueryOptions,
-	UpdateQuery,
 } from 'mongoose';
 
 import { FavoriteModel, FavoriteSansMeta, Favorite } from '~/models/favorite';
@@ -36,19 +35,6 @@ export const findFavorite = async (
 		options
 	).lean();
 	return favorite;
-};
-
-export const findAndUpdateFavorite = async (
-	query: FilterQuery<Favorite>,
-	update: UpdateQuery<FavoriteSansMeta>,
-	options?: QueryOptions
-): Promise<null | Favorite> => {
-	const updatedFavorite = await FavoriteModel.findOneAndUpdate(
-		query,
-		update,
-		options
-	).lean();
-	return updatedFavorite;
 };
 
 export const deleteFavorite = async (

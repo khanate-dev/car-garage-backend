@@ -33,4 +33,6 @@ const favoriteSchema = new Schema<Favorite>(
 	}
 );
 
+favoriteSchema.index({ userId: 1, bodyTypeId: 1 }, { unique: true });
+
 export const FavoriteModel = model('Favorite', favoriteSchema);

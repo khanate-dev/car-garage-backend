@@ -3,26 +3,25 @@ import { ApiError } from '~/errors';
 import {
 	CreateFavoriteSchema,
 	DeleteFavoriteSchema,
-	GetFavoriteSchema,
 	GetFavoritesSchema,
-	UpdateFavoriteSchema,
 } from '~/schemas/favorite';
 
 import {
 	createFavorite,
 	deleteFavorite,
-	findAndUpdateFavorite,
-	findFavorite,
 	findFavorites,
+	findFavorite,
 } from '~/services/favorite';
 
 import { AuthenticatedHandler, Status } from '~/types';
 
 export const createFavoriteHandler: AuthenticatedHandler<CreateFavoriteSchema> = async (
-	request
+	request,
+	response
 ) => {
 	const favorite = await createFavorite({
 		...request.body,
+		userId: response.locals.user._id,
 	});
 	return {
 		status: Status.CREATED,
@@ -30,53 +29,17 @@ export const createFavoriteHandler: AuthenticatedHandler<CreateFavoriteSchema> =
 	};
 };
 
-export const getFavoritesHandler: AuthenticatedHandler<GetFavoritesSchema> = async () => {
-
-	const favorites = await findFavorites();
-
-	if (!favorites) throw new ApiError(Status.NOT_FOUND);
-	return favorites;
-
-};
-
-export const getFavoriteHandler: AuthenticatedHandler<GetFavoriteSchema> = async (
-	request
-) => {
-
-	const _id = request.params._id;
-	const favorite = await findFavorite({
-		_id,
-	});
-
-	if (!favorite) throw new ApiError(Status.NOT_FOUND);
-
-	return favorite;
-
-};
-
-export const updateFavoriteHandler: AuthenticatedHandler<UpdateFavoriteSchema> = async (
-	request,
+export const getFavoritesHandler: AuthenticatedHandler<GetFavoritesSchema> = async (
+	_request,
 	response
 ) => {
 
-	const userId = response.locals.user._id;
-	const _id = request.params._id;
-	const favorite = await findFavorite({
-		user: userId,
-		_id,
-	});
+	const user = response.locals.user;
+	const options = user.role === 'admin' ? {} : { userId: user._id };
+	const favorites = await findFavorites(options);
 
-	if (!favorite) throw new ApiError(Status.NOT_FOUND);
-
-	const updatedFavorite = await findAndUpdateFavorite(
-		{ _id },
-		request.body,
-		{ new: true }
-	);
-
-	if (!updatedFavorite) throw new ApiError(Status.NOT_FOUND);
-
-	return updatedFavorite;
+	if (!favorites) throw new ApiError(Status.NOT_FOUND);
+	return favorites;
 
 };
 
