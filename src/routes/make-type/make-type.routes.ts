@@ -24,20 +24,19 @@ const makeTypeRoutes: Route[] = [
 		schema: createMakeTypeSchema,
 		handler: createMakeTypeHandler,
 		isAuthenticated: true,
+		availableTo: 'admin',
 	},
 	{
 		method: 'get',
 		path: '/',
 		schema: getMakeTypesSchema,
 		handler: getMakeTypesHandler,
-		isAuthenticated: true,
 	},
 	{
 		method: 'get',
 		path: '/:_id',
 		schema: getMakeTypeSchema,
 		handler: getMakeTypeHandler,
-		isAuthenticated: true,
 	},
 	{
 		method: 'put',
@@ -45,6 +44,7 @@ const makeTypeRoutes: Route[] = [
 		schema: updateMakeTypeSchema,
 		handler: updateMakeTypeHandler,
 		isAuthenticated: true,
+		availableTo: 'admin',
 	},
 	{
 		method: 'delete',
@@ -52,6 +52,7 @@ const makeTypeRoutes: Route[] = [
 		schema: deleteMakeTypeSchema,
 		handler: deleteMakeTypeHandler,
 		isAuthenticated: true,
+		availableTo: 'admin',
 	},
 ];
 

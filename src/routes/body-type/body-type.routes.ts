@@ -24,20 +24,19 @@ const bodyTypeRoutes: Route[] = [
 		schema: createBodyTypeSchema,
 		handler: createBodyTypeHandler,
 		isAuthenticated: true,
+		availableTo: 'admin',
 	},
 	{
 		method: 'get',
 		path: '/',
 		schema: getBodyTypesSchema,
 		handler: getBodyTypesHandler,
-		isAuthenticated: true,
 	},
 	{
 		method: 'get',
 		path: '/:_id',
 		schema: getBodyTypeSchema,
 		handler: getBodyTypeHandler,
-		isAuthenticated: true,
 	},
 	{
 		method: 'put',
@@ -45,6 +44,7 @@ const bodyTypeRoutes: Route[] = [
 		schema: updateBodyTypeSchema,
 		handler: updateBodyTypeHandler,
 		isAuthenticated: true,
+		availableTo: 'admin',
 	},
 	{
 		method: 'delete',
@@ -52,6 +52,7 @@ const bodyTypeRoutes: Route[] = [
 		schema: deleteBodyTypeSchema,
 		handler: deleteBodyTypeHandler,
 		isAuthenticated: true,
+		availableTo: 'admin',
 	},
 ];
 

@@ -16,7 +16,7 @@ import {
 	findModels,
 } from '~/services/model';
 
-import { AuthenticatedHandler, Status } from '~/types';
+import { AuthenticatedHandler, Status, UnAuthenticatedHandler } from '~/types';
 
 export const createModelHandler: AuthenticatedHandler<CreateModelSchema> = async (
 	request
@@ -30,7 +30,7 @@ export const createModelHandler: AuthenticatedHandler<CreateModelSchema> = async
 	};
 };
 
-export const getModelsHandler: AuthenticatedHandler<GetModelsSchema> = async () => {
+export const getModelsHandler: UnAuthenticatedHandler<GetModelsSchema> = async () => {
 
 	const models = await findModels();
 
@@ -39,7 +39,7 @@ export const getModelsHandler: AuthenticatedHandler<GetModelsSchema> = async () 
 
 };
 
-export const getModelHandler: AuthenticatedHandler<GetModelSchema> = async (
+export const getModelHandler: UnAuthenticatedHandler<GetModelSchema> = async (
 	request
 ) => {
 

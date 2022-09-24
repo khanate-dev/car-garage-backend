@@ -16,7 +16,7 @@ import {
 	findBodyTypes,
 } from '~/services/body-type';
 
-import { AuthenticatedHandler, Status } from '~/types';
+import { AuthenticatedHandler, Status, UnAuthenticatedHandler } from '~/types';
 
 export const createBodyTypeHandler: AuthenticatedHandler<CreateBodyTypeSchema> = async (
 	request
@@ -30,7 +30,7 @@ export const createBodyTypeHandler: AuthenticatedHandler<CreateBodyTypeSchema> =
 	};
 };
 
-export const getBodyTypesHandler: AuthenticatedHandler<GetBodyTypesSchema> = async () => {
+export const getBodyTypesHandler: UnAuthenticatedHandler<GetBodyTypesSchema> = async () => {
 
 	const bodyTypes = await findBodyTypes();
 
@@ -39,7 +39,7 @@ export const getBodyTypesHandler: AuthenticatedHandler<GetBodyTypesSchema> = asy
 
 };
 
-export const getBodyTypeHandler: AuthenticatedHandler<GetBodyTypeSchema> = async (
+export const getBodyTypeHandler: UnAuthenticatedHandler<GetBodyTypeSchema> = async (
 	request
 ) => {
 

@@ -24,20 +24,19 @@ const modelRoutes: Route[] = [
 		schema: createModelSchema,
 		handler: createModelHandler,
 		isAuthenticated: true,
+		availableTo: 'admin',
 	},
 	{
 		method: 'get',
 		path: '/',
 		schema: getModelsSchema,
 		handler: getModelsHandler,
-		isAuthenticated: true,
 	},
 	{
 		method: 'get',
 		path: '/:_id',
 		schema: getModelSchema,
 		handler: getModelHandler,
-		isAuthenticated: true,
 	},
 	{
 		method: 'put',
@@ -45,6 +44,7 @@ const modelRoutes: Route[] = [
 		schema: updateModelSchema,
 		handler: updateModelHandler,
 		isAuthenticated: true,
+		availableTo: 'admin',
 	},
 	{
 		method: 'delete',
@@ -52,6 +52,7 @@ const modelRoutes: Route[] = [
 		schema: deleteModelSchema,
 		handler: deleteModelHandler,
 		isAuthenticated: true,
+		availableTo: 'admin',
 	},
 ];
 

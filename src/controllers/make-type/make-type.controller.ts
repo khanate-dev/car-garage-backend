@@ -16,7 +16,7 @@ import {
 	findMakeTypes,
 } from '~/services/make-type';
 
-import { AuthenticatedHandler, Status } from '~/types';
+import { AuthenticatedHandler, Status, UnAuthenticatedHandler } from '~/types';
 
 export const createMakeTypeHandler: AuthenticatedHandler<CreateMakeTypeSchema> = async (
 	request
@@ -30,7 +30,7 @@ export const createMakeTypeHandler: AuthenticatedHandler<CreateMakeTypeSchema> =
 	};
 };
 
-export const getMakeTypesHandler: AuthenticatedHandler<GetMakeTypesSchema> = async () => {
+export const getMakeTypesHandler: UnAuthenticatedHandler<GetMakeTypesSchema> = async () => {
 
 	const makeTypes = await findMakeTypes();
 
@@ -39,7 +39,7 @@ export const getMakeTypesHandler: AuthenticatedHandler<GetMakeTypesSchema> = asy
 
 };
 
-export const getMakeTypeHandler: AuthenticatedHandler<GetMakeTypeSchema> = async (
+export const getMakeTypeHandler: UnAuthenticatedHandler<GetMakeTypeSchema> = async (
 	request
 ) => {
 
