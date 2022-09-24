@@ -55,14 +55,11 @@ export const getMakeTypeHandler: UnAuthenticatedHandler<GetMakeTypeSchema> = asy
 };
 
 export const updateMakeTypeHandler: AuthenticatedHandler<UpdateMakeTypeSchema> = async (
-	request,
-	response
+	request
 ) => {
 
-	const userId = response.locals.user._id;
 	const _id = request.params._id;
 	const makeType = await findMakeType({
-		user: userId,
 		_id,
 	});
 
@@ -81,15 +78,12 @@ export const updateMakeTypeHandler: AuthenticatedHandler<UpdateMakeTypeSchema> =
 };
 
 export const deleteMakeTypeHandler: AuthenticatedHandler<DeleteMakeTypeSchema> = async (
-	request,
-	response
+	request
 ) => {
 
-	const userId = response.locals.user._id;
 	const _id = request.params._id;
 
 	const makeType = await findMakeType({
-		user: userId,
 		_id,
 	});
 

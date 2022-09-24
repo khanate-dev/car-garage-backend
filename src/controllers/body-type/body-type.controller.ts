@@ -55,14 +55,11 @@ export const getBodyTypeHandler: UnAuthenticatedHandler<GetBodyTypeSchema> = asy
 };
 
 export const updateBodyTypeHandler: AuthenticatedHandler<UpdateBodyTypeSchema> = async (
-	request,
-	response
+	request
 ) => {
 
-	const userId = response.locals.user._id;
 	const _id = request.params._id;
 	const bodyType = await findBodyType({
-		user: userId,
 		_id,
 	});
 
@@ -81,15 +78,12 @@ export const updateBodyTypeHandler: AuthenticatedHandler<UpdateBodyTypeSchema> =
 };
 
 export const deleteBodyTypeHandler: AuthenticatedHandler<DeleteBodyTypeSchema> = async (
-	request,
-	response
+	request
 ) => {
 
-	const userId = response.locals.user._id;
 	const _id = request.params._id;
 
 	const bodyType = await findBodyType({
-		user: userId,
 		_id,
 	});
 

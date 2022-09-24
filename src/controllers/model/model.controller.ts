@@ -55,14 +55,11 @@ export const getModelHandler: UnAuthenticatedHandler<GetModelSchema> = async (
 };
 
 export const updateModelHandler: AuthenticatedHandler<UpdateModelSchema> = async (
-	request,
-	response
+	request
 ) => {
 
-	const userId = response.locals.user._id;
 	const _id = request.params._id;
 	const model = await findModel({
-		user: userId,
 		_id,
 	});
 
@@ -81,15 +78,12 @@ export const updateModelHandler: AuthenticatedHandler<UpdateModelSchema> = async
 };
 
 export const deleteModelHandler: AuthenticatedHandler<DeleteModelSchema> = async (
-	request,
-	response
+	request
 ) => {
 
-	const userId = response.locals.user._id;
 	const _id = request.params._id;
 
 	const model = await findModel({
-		user: userId,
 		_id,
 	});
 
