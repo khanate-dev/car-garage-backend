@@ -13,17 +13,35 @@ const params = z.strictObject({
 	),
 });
 
+const body = productSansMetaModelSchema.extend({
+	makeTypeId: z.string().refine(
+		isValidObjectId,
+		'parameter must be a valid mongo ObjectID'
+	),
+	modelId: z.string().refine(
+		isValidObjectId,
+		'parameter must be a valid mongo ObjectID'
+	),
+	bodyTypeId: z.string().refine(
+		isValidObjectId,
+		'parameter must be a valid mongo ObjectID'
+	),
+	sellerId: z.string().refine(
+		isValidObjectId,
+		'parameter must be a valid mongo ObjectID'
+	).optional(), // TODO figure out what to do here instead of making sellerId optional
+});
 const response = productModelSchema;
 
 export const createProductSchema = createRouteSchema({
-	body: productSansMetaModelSchema.extend({}),
+	body,
 	response,
 });
 
 export type CreateProductSchema = z.infer<typeof createProductSchema>;
 
 export const updateProductSchema = createRouteSchema({
-	body: productSansMetaModelSchema,
+	body,
 	params,
 	response,
 });
