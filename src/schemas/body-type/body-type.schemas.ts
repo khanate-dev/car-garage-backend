@@ -13,17 +13,24 @@ const params = z.strictObject({
 	),
 });
 
+const body = bodyTypeSansMetaModelSchema.extend({
+	modelId: z.string().refine(
+		isValidObjectId,
+		'parameter must be a valid mongo ObjectID'
+	),
+});
+
 const response = bodyTypeModelSchema;
 
 export const createBodyTypeSchema = createRouteSchema({
-	body: bodyTypeSansMetaModelSchema,
+	body,
 	response,
 });
 
 export type CreateBodyTypeSchema = z.infer<typeof createBodyTypeSchema>;
 
 export const updateBodyTypeSchema = createRouteSchema({
-	body: bodyTypeSansMetaModelSchema,
+	body,
 	params,
 	response,
 });
