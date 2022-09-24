@@ -1,16 +1,10 @@
-import { isValidObjectId, Types } from 'mongoose';
+import { isValidObjectId } from 'mongoose';
 import z from 'zod';
 
 import { createRouteSchema } from '~/helpers/schema';
 
-import { bodyTypeModelSchema } from '~/models';
+import { bodyTypeModelSchema, bodyTypeSansMetaModelSchema } from '~/models';
 
-const body = z.strictObject({
-	name: z.string({
-		required_error: 'name is required',
-	}),
-	modelId: z.instanceof(Types.ObjectId),
-});
 
 const params = z.strictObject({
 	_id: z.string().refine(
@@ -26,14 +20,14 @@ const params = z.strictObject({
 const response = bodyTypeModelSchema;
 
 export const createBodyTypeSchema = createRouteSchema({
-	body,
+	body: bodyTypeSansMetaModelSchema,
 	response,
 });
 
 export type CreateBodyTypeSchema = z.infer<typeof createBodyTypeSchema>;
 
 export const updateBodyTypeSchema = createRouteSchema({
-	body,
+	body: bodyTypeSansMetaModelSchema,
 	params,
 	response,
 });

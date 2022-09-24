@@ -8,7 +8,7 @@ export const {
 	modelSchema: modelModelSchema,
 } = getModelSchema({
 	name: z.string(),
-	year: z.number(),
+	year: z.number().positive(),
 	makeTypeId: z.instanceof(Types.ObjectId),
 });
 

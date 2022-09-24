@@ -1,31 +1,10 @@
-import { isValidObjectId, Types } from 'mongoose';
+import { isValidObjectId } from 'mongoose';
 import z from 'zod';
 
 import { createRouteSchema } from '~/helpers/schema';
 
-import { categories, productModelSchema } from '~/models';
+import { productModelSchema, productSansMetaModelSchema } from '~/models';
 
-const body = z.strictObject({
-	title: z.string({
-		required_error: 'title is required',
-	}),
-	category: z.enum(categories, {
-		required_error: 'category is required',
-	}),
-	description: z.string({
-		required_error: 'description is required',
-	}).optional(),
-	price: z.number({
-		required_error: 'price is required',
-	}).positive(),
-	image: z.string().url().optional(),
-	isFeatured: z.boolean().optional(),
-	buyerId: z.instanceof(Types.ObjectId).optional(),
-	sellerId: z.instanceof(Types.ObjectId).optional(),
-	makeTypeId: z.instanceof(Types.ObjectId).optional(),
-	modelId: z.instanceof(Types.ObjectId).optional(),
-	bodyTypeId: z.instanceof(Types.ObjectId).optional(),
-});
 
 const params = z.strictObject({
 	_id: z.string().refine(
@@ -57,14 +36,14 @@ const params = z.strictObject({
 const response = productModelSchema;
 
 export const createProductSchema = createRouteSchema({
-	body,
+	body: productSansMetaModelSchema,
 	response,
 });
 
 export type CreateProductSchema = z.infer<typeof createProductSchema>;
 
 export const updateProductSchema = createRouteSchema({
-	body,
+	body: productSansMetaModelSchema,
 	params,
 	response,
 });

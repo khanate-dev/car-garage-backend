@@ -18,11 +18,11 @@ export const {
 	price: z.number().positive(),
 	image: z.string().url().optional(),
 	isFeatured: z.boolean().optional(),
-	buyerId: z.instanceof(Types.ObjectId),
+	buyerId: z.instanceof(Types.ObjectId).optional(),
 	sellerId: z.instanceof(Types.ObjectId),
 	makeTypeId: z.instanceof(Types.ObjectId),
-	modelId: z.instanceof(Types.ObjectId),
-	bodyTypeId: z.instanceof(Types.ObjectId),
+	modelId: z.instanceof(Types.ObjectId).optional(),
+	bodyTypeId: z.instanceof(Types.ObjectId).optional(),
 });
 
 export type ProductSansMeta = z.infer<typeof productSansMetaModelSchema>;

@@ -3,13 +3,7 @@ import z from 'zod';
 
 import { createRouteSchema } from '~/helpers/schema';
 
-import { makeTypeModelSchema } from '~/models';
-
-const body = z.strictObject({
-	name: z.string({
-		required_error: 'name is required',
-	}),
-});
+import { makeTypeModelSchema, makeTypeSansMetaModelSchema } from '~/models';
 
 const params = z.strictObject({
 	_id: z.string().refine(
@@ -21,14 +15,14 @@ const params = z.strictObject({
 const response = makeTypeModelSchema;
 
 export const createMakeTypeSchema = createRouteSchema({
-	body,
+	body: makeTypeSansMetaModelSchema,
 	response,
 });
 
 export type CreateMakeTypeSchema = z.infer<typeof createMakeTypeSchema>;
 
 export const updateMakeTypeSchema = createRouteSchema({
-	body,
+	body: makeTypeSansMetaModelSchema,
 	params,
 	response,
 });

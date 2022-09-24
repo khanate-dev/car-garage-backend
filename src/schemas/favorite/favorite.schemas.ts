@@ -1,14 +1,9 @@
-import { isValidObjectId, Types } from 'mongoose';
+import { isValidObjectId } from 'mongoose';
 import z from 'zod';
 
 import { createRouteSchema } from '~/helpers/schema';
 
-import { favoriteModelSchema } from '~/models';
-
-const body = z.strictObject({
-	userId: z.instanceof(Types.ObjectId).optional(),
-	bodyTypeId: z.instanceof(Types.ObjectId).optional(),
-});
+import { favoriteModelSchema, favoriteSansMetaModelSchema } from '~/models';
 
 const params = z.strictObject({
 	_id: z.string().refine(
@@ -28,14 +23,14 @@ const params = z.strictObject({
 const response = favoriteModelSchema;
 
 export const createFavoriteSchema = createRouteSchema({
-	body,
+	body: favoriteSansMetaModelSchema,
 	response,
 });
 
 export type CreateFavoriteSchema = z.infer<typeof createFavoriteSchema>;
 
 export const updateFavoriteSchema = createRouteSchema({
-	body,
+	body: favoriteSansMetaModelSchema,
 	params,
 	response,
 });

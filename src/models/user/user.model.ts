@@ -21,7 +21,9 @@ export const {
 	email: z.string().email(),
 	phoneNumber: z.string().regex(PHONE_REGEX),
 	name: z.string(),
-	password: z.string(),
+	password: z.string({
+		required_error: 'Password is required',
+	}).min(6, 'Password too short - should be at least 6 characters'),
 	role: z.enum(userRoles),
 });
 
