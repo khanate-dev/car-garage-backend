@@ -84,8 +84,55 @@ AutoDeals.pk is a Pakistan primarily based car platform. That affords the offeri
 - reviews contain a star rating out of five and description
 - user can view list of reviews
 
-**Reviews**
->`requires login as user`
-- users can review vehicles
-- reviews contain a star rating out of five and description
-- user can view, add, remove, and update list of reviews
+
+
+## Models
+
+### users
+- name = string *
+- phoneNumber = string *
+- email = string *
+- password = string *
+- role = enum('admin', 'user', 'guest') *
+
+### products
+- title = string *
+- category = enum('car', 'bike', 'auto-parts') *
+- description = string 
+- price = number *
+- image = string *
+- isFeatured = boolean (default = false)
+- isSold = boolean (default = false)
+- buyerId = foriegnKey (required when marking as sold)
+- sellerId = foriegnKey *
+- currencyID = foriegnKey *
+- makeTypeId = foriegnKey *
+- modelId = foriegnKey *
+- bodyTypeId = foriegnKey *
+
+
+### currencies
+- name = string (unique) *
+- symbol = string (unique) *
+
+### makeTypes
+- name = string (unique) *
+
+### models
+- name = string (composite with year) *
+- year = number (composite with name) *
+- makeTypeId = foriegnKey *
+
+### bodyTypes
+- name = string (unique) *
+- modelId = foriegnKey *
+
+### favourites
+- bodyTypeId = foriegnKey *
+- userId = foriegnKey *
+
+### reviews
+- userId = foriegnKey *
+- bodyTypeId = foriegnKey *
+- rating = number (min: 1, max: 5) *
+- description = string

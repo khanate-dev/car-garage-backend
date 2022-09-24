@@ -1,6 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 import z from 'zod';
-import { PHONE_NUMBER_REGEX } from '~/config';
+import { PHONE_REGEX } from '~/config';
 
 import { getHashedPassword } from '~/helpers/crypto';
 
@@ -19,7 +19,7 @@ export const {
 	modelSchema: userModelSchema,
 } = getModelSchema({
 	email: z.string().email(),
-	phoneNumber: z.string().regex(PHONE_NUMBER_REGEX),
+	phoneNumber: z.string().regex(PHONE_REGEX),
 	name: z.string(),
 	password: z.string(),
 	role: z.enum(userRoles),

@@ -1,7 +1,7 @@
 import { isValidObjectId } from 'mongoose';
 import z from 'zod';
 
-import { PHONE_NUMBER_REGEX } from '~/config';
+import { PHONE_REGEX } from '~/config';
 
 import { createRouteSchema } from '~/helpers/schema';
 
@@ -23,7 +23,7 @@ export const createUserSchema = createRouteSchema({
 		}).email('Not a valid email'),
 		phoneNumber: z.string({
 			required_error: 'Phone Number is required',
-		}).regex(PHONE_NUMBER_REGEX, 'Not a valid phone number'),
+		}).regex(PHONE_REGEX, 'Not a valid phone number'),
 		role: z.enum(userRoles, {
 			required_error: 'role is required',
 		}),
