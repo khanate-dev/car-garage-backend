@@ -19,10 +19,16 @@ import {
 import { AuthenticatedHandler, Status } from '~/types';
 
 export const createReviewHandler: AuthenticatedHandler<CreateReviewSchema> = async (
-	request
+	request,
+	response
 ) => {
+	const user = response.locals.user;
+
+	if (request.body.userId && user.role !== 'admin') throw new ApiError(Status.FORBIDDEN);
+
 	const review = await createReview({
 		...request.body,
+		userId: request.body.userId ?? user._id,
 	});
 	return {
 		status: Status.CREATED,

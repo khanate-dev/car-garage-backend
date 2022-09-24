@@ -45,4 +45,6 @@ const reviewSchema = new Schema<Review>(
 	}
 );
 
+reviewSchema.index({ userId: 1, bodyTypeId: 1 }, { unique: true });
+
 export const ReviewModel = model('Review', reviewSchema);

@@ -12,17 +12,28 @@ const params = z.strictObject({
 	),
 });
 
+const body = reviewSansMetaModelSchema.extend({
+	userId: z.string().refine(
+		isValidObjectId,
+		'parameter must be a valid mongo ObjectID'
+	).optional(),
+	bodyTypeId: z.string().refine(
+		isValidObjectId,
+		'parameter must be a valid mongo ObjectID'
+	),
+});
+
 const response = reviewModelSchema;
 
 export const createReviewSchema = createRouteSchema({
-	body: reviewSansMetaModelSchema,
+	body,
 	response,
 });
 
 export type CreateReviewSchema = z.infer<typeof createReviewSchema>;
 
 export const updateReviewSchema = createRouteSchema({
-	body: reviewSansMetaModelSchema,
+	body,
 	params,
 	response,
 });
