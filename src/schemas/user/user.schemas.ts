@@ -1,6 +1,8 @@
 import { isValidObjectId } from 'mongoose';
 import z from 'zod';
 
+import { constants } from '~/config';
+
 import { createRouteSchema } from '~/helpers/schema';
 
 import { userSansPasswordModelSchema, userRoles } from '~/models';
@@ -19,6 +21,9 @@ export const createUserSchema = createRouteSchema({
 		email: z.string({
 			required_error: 'Email is required',
 		}).email('Not a valid email'),
+		phoneNumber: z.string({
+			required_error: 'Phone Number is required',
+		}).regex(constants.PHONE_NUMBER_REGEX, 'Not a valid phone number'),
 		role: z.enum(userRoles, {
 			required_error: 'role is required',
 		}),

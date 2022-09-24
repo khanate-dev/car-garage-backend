@@ -1,5 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 import z from 'zod';
+import { constants } from '~/config';
 
 import { getHashedPassword } from '~/helpers/crypto';
 
@@ -18,6 +19,7 @@ export const {
 	modelSchema: userModelSchema,
 } = getModelSchema({
 	email: z.string().email(),
+	phoneNumber: z.string().regex(constants.PHONE_NUMBER_REGEX),
 	name: z.string(),
 	password: z.string(),
 	role: z.enum(userRoles),
@@ -58,7 +60,7 @@ const userSchema = new Schema<User>(
 	}
 );
 
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
 
 	const user = this as unknown as Document<any, any, UserSansMeta>;
 	if (!user.isModified('password')) {

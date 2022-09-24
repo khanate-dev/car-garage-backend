@@ -2,7 +2,7 @@ import express from 'express';
 import pinoMiddleWare from 'express-pino-logger';
 import helmet from 'helmet';
 
-import config from '~/config';
+import { config } from '~/config';
 
 import connectDb from '~/helpers/connect-db';
 import logger from '~/helpers/logger';

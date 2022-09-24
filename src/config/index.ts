@@ -1,1 +1,7 @@
-export { default } from './server.config';
+import constants from './constants.config';
+import config from './server.config';
+
+export {
+	constants,
+	config,
+};
