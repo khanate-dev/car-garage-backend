@@ -1,1 +1,1 @@
-export * from './body-type.controller';
+export * from './model.controller';
