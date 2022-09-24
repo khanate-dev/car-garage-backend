@@ -36,4 +36,6 @@ const modelSchema = new Schema<Model>(
 	}
 );
 
+modelSchema.index({ name: 1, year: 1 }, { unique: true });
+
 export const ModelModel = model('Model', modelSchema);
