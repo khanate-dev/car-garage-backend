@@ -13,7 +13,16 @@ import registerRoutes from '~/register-routes';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+	allowedHeaders: [
+		'x-refresh',
+		'Content-Type',
+		'Authorization',
+	],
+	exposedHeaders: [
+		'x-access-token',
+	],
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
