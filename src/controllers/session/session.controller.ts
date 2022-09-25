@@ -69,6 +69,7 @@ export const createSessionHandler: UnAuthenticatedHandler<CreateSessionSchema> =
 		json: {
 			accessToken,
 			refreshToken,
+			user,
 		},
 	};
 
