@@ -38,7 +38,7 @@ export const createSessionHandler: UnAuthenticatedHandler<CreateSessionSchema> =
 
 	if (!user) {
 		throw new ApiError(
-			Status.UNAUTHORIZED,
+			Status.BAD_REQUEST,
 			'Invalid email or password'
 		);
 	}
