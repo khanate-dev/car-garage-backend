@@ -1,6 +1,7 @@
 import express from 'express';
 import pinoMiddleWare from 'express-pino-logger';
 import helmet from 'helmet';
+import cors from 'cors';
 
 import { config } from '~/config';
 
@@ -12,6 +13,16 @@ import registerRoutes from '~/register-routes';
 
 const app = express();
 
+app.use(cors({
+	allowedHeaders: [
+		'x-refresh',
+		'Content-Type',
+		'Authorization',
+	],
+	exposedHeaders: [
+		'x-access-token',
+	],
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
