@@ -27,9 +27,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 
-if (config.env === 'production') {
-	app.use(pinoMiddleWare({ logger }));
-}
+// ! Typescript Weird Error
+// if (config.env === 'production') {
+// 	app.use(pinoMiddleWare({ logger }));
+// }
 
 const server = app.listen(config.port, async () => {
 	logger.info(`App is running at http://localhost:${config.port}`);
