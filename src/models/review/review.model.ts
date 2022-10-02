@@ -45,6 +45,14 @@ const reviewSchema = new Schema<Review>(
 	}
 );
 
+
+reviewSchema.virtual('bodyType', {
+	ref: 'BodyType',
+	localField: 'bodyTypeId',
+	foreignField: '_id',
+	justOne: true,
+});
+
 reviewSchema.index({ userId: 1, bodyTypeId: 1 }, { unique: true });
 
 export const ReviewModel = model('Review', reviewSchema);

@@ -7,6 +7,19 @@ import {
 
 import { ReviewModel, ReviewSansMeta, Review } from '~/models/review';
 
+const populateOptions = {
+	path: 'bodyType',
+	select: '-_id -createdAt -updatedAt -__v',
+	populate: {
+		path: 'model',
+		select: '-_id -createdAt -updatedAt -__v',
+		populate: {
+			path: 'makeType',
+			select: '-_id -createdAt -updatedAt -__v',
+		},
+	},
+};
+
 export const createReview = async (
 	input: DocumentDefinition<ReviewSansMeta>
 ): Promise<Review> => {
@@ -22,7 +35,9 @@ export const findReviews = async (
 		query ?? {},
 		{},
 		options
-	).lean();
+	)
+		.populate(populateOptions)
+		.lean();
 	return reviews;
 };
 
@@ -34,7 +49,9 @@ export const findReview = async (
 		query ?? {},
 		{},
 		options
-	).lean();
+	)
+		.populate(populateOptions)
+		.lean();
 	return review;
 };
 
@@ -47,7 +64,9 @@ export const findAndUpdateReview = async (
 		query,
 		update,
 		options
-	).lean();
+	)
+		.populate(populateOptions)
+		.lean();
 	return updatedReview;
 };
 
