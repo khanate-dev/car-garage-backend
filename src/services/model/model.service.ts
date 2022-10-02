@@ -22,7 +22,7 @@ export const findModels = async (
 		query ?? {},
 		{},
 		options
-	).lean();
+	).populate('makeType', '-_id -createdAt -updatedAt -__v').lean();
 	return models;
 };
 
@@ -34,7 +34,7 @@ export const findModel = async (
 		query,
 		{},
 		options
-	).lean();
+	).populate('makeType', '-_id -createdAt -updatedAt -__v').lean();
 	return model;
 };
 
@@ -47,7 +47,7 @@ export const findAndUpdateModel = async (
 		query,
 		update,
 		options
-	).lean();
+	).populate('makeType', '-_id -createdAt -updatedAt -__v').lean();
 	return updatedModel;
 };
 

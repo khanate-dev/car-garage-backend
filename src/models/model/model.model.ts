@@ -36,6 +36,13 @@ const modelSchema = new Schema<Model>(
 	}
 );
 
+modelSchema.virtual('makeType', {
+	ref: 'MakeType',
+	localField: 'makeTypeId',
+	foreignField: '_id',
+	justOne: true,
+});
+
 modelSchema.index({ name: 1, year: 1 }, { unique: true });
 
 export const ModelModel = model('Model', modelSchema);
