@@ -4,6 +4,7 @@ import {
 	QueryOptions,
 	UpdateQuery,
 } from 'mongoose';
+import logger from '~/helpers/logger';
 
 import { ProductModel, ProductSansMeta, Product } from '~/models/product';
 
@@ -22,7 +23,9 @@ export const findProducts = async (
 		query ?? {},
 		{},
 		options
-	).lean();
+	)
+		.populate('seller buyer bodyType makeType model', '-_id -password -createdAt -updatedAt -__v')
+		.lean();
 	return products;
 };
 
@@ -34,7 +37,10 @@ export const findProduct = async (
 		query,
 		{},
 		options
-	).lean();
+	)
+		.populate('seller buyer bodyType makeType model', '-_id -password -createdAt -updatedAt -__v')
+		.lean();
+	logger.info(product);
 	return product;
 };
 
@@ -47,7 +53,9 @@ export const findAndUpdateProduct = async (
 		query,
 		update,
 		options
-	).lean();
+	)
+		.populate('seller buyer bodyType makeType model', '-_id -password -createdAt -updatedAt -__v')
+		.lean();
 	return updatedProduct;
 };
 

@@ -94,4 +94,40 @@ const productSchema = new Schema<Product>(
 	}
 );
 
+// Set virtual fields for loading referenced data
+productSchema.virtual('seller', {
+	ref: 'User',
+	localField: 'sellerId',
+	foreignField: '_id',
+	justOne: true,
+});
+
+productSchema.virtual('buyer', {
+	ref: 'User',
+	localField: 'buyerId',
+	foreignField: '_id',
+	justOne: true,
+});
+
+productSchema.virtual('makeType', {
+	ref: 'MakeType',
+	localField: 'makeTypeId',
+	foreignField: '_id',
+	justOne: true,
+});
+
+productSchema.virtual('model', {
+	ref: 'Model',
+	localField: 'modelId',
+	foreignField: '_id',
+	justOne: true,
+});
+
+productSchema.virtual('bodyType', {
+	ref: 'BodyType',
+	localField: 'bodyTypeId',
+	foreignField: '_id',
+	justOne: true,
+});
+
 export const ProductModel = model('Product', productSchema);
