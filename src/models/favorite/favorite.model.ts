@@ -33,6 +33,13 @@ const favoriteSchema = new Schema<Favorite>(
 	}
 );
 
+favoriteSchema.virtual('bodyType', {
+	ref: 'BodyType',
+	localField: 'bodyTypeId',
+	foreignField: '_id',
+	justOne: true,
+});
+
 favoriteSchema.index({ userId: 1, bodyTypeId: 1 }, { unique: true });
 
 export const FavoriteModel = model('Favorite', favoriteSchema);

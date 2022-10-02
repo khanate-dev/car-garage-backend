@@ -6,6 +6,19 @@ import {
 
 import { FavoriteModel, FavoriteSansMeta, Favorite } from '~/models/favorite';
 
+const populateOptions = {
+	path: 'bodyType',
+	select: '-_id -createdAt -updatedAt -__v',
+	populate: {
+		path: 'model',
+		select: '-_id -createdAt -updatedAt -__v',
+		populate: {
+			path: 'makeType',
+			select: '-_id -createdAt -updatedAt -__v',
+		},
+	},
+};
+
 export const createFavorite = async (
 	input: DocumentDefinition<FavoriteSansMeta>
 ): Promise<Favorite> => {
@@ -21,7 +34,7 @@ export const findFavorites = async (
 		query ?? {},
 		{},
 		options
-	).lean();
+	).populate(populateOptions).lean();
 	return favorites;
 };
 
@@ -33,7 +46,7 @@ export const findFavorite = async (
 		query,
 		{},
 		options
-	).lean();
+	).populate(populateOptions).lean();
 	return favorite;
 };
 
