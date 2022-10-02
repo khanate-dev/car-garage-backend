@@ -7,6 +7,15 @@ import {
 
 import { BodyTypeModel, BodyTypeSansMeta, BodyType } from '~/models/body-type';
 
+const populateOptions = {
+	path: 'model',
+	select: '-_id -createdAt -updatedAt -__v',
+	populate: {
+		path: 'makeType',
+		select: '-_id -createdAt -updatedAt -__v',
+	},
+};
+
 export const createBodyType = async (
 	input: DocumentDefinition<BodyTypeSansMeta>
 ): Promise<BodyType> => {
@@ -22,7 +31,9 @@ export const findBodyTypes = async (
 		query ?? {},
 		{},
 		options
-	).lean();
+	)
+		.populate(populateOptions)
+		.lean();
 	return bodyTypes;
 };
 
@@ -34,7 +45,9 @@ export const findBodyType = async (
 		query,
 		{},
 		options
-	).lean();
+	)
+		.populate(populateOptions)
+		.lean();
 	return bodyType;
 };
 
@@ -47,7 +60,9 @@ export const findAndUpdateBodyType = async (
 		query,
 		update,
 		options
-	).lean();
+	)
+		.populate(populateOptions)
+		.lean();
 	return updatedBodyType;
 };
 

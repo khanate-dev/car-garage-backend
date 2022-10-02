@@ -32,4 +32,11 @@ const bodyTypeSchema = new Schema<BodyType>(
 	}
 );
 
+bodyTypeSchema.virtual('model', {
+	ref: 'Model',
+	localField: 'modelId',
+	foreignField: '_id',
+	justOne: true,
+});
+
 export const BodyTypeModel = model('BodyType', bodyTypeSchema);
