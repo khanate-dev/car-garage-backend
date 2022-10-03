@@ -2,7 +2,7 @@ export const PHONE_REGEX = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}
 
 const MONGO_URI_PREFIX_REGEX = /mongodb(\+srv)?:\/\//i;
 const MONGO_URI_HOST_REGEX = /[a-zA-Z0-9-_.:@]+/i;
-const MONGO_URI_COLLECTION_REGEX = /\/[a-zA-Z0-9-_.]+/i;
+const MONGO_URI_COLLECTION_REGEX = /\/?[a-zA-Z0-9-_.]*/i;
 const MONGO_URI_PARAMS_REGEX = /(\?([a-zA-Z0-9-_.]+=[a-zA-Z0-9-_.]+&?)*)?/i;
 export const MONGO_URI_REGEX = new RegExp(
 	'^'
