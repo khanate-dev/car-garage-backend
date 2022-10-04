@@ -115,7 +115,7 @@ interface {
   phoneNumber: string,
   email: string,
   password: string,
-  role: 'admin' | 'user' | 'guest',
+  role: 'admin' | 'user',
 }
 ```
 
