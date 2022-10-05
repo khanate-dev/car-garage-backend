@@ -23,4 +23,8 @@ export const environmentSchema = z.object({
 	REFRESH_TOKEN_AGE: z.string().regex(AGE_REGEX, 'invalid time string').optional(),
 	PUBLIC_KEY: z.string().regex(PUBLIC_KEY_REGEX, 'invalid key'),
 	PRIVATE_KEY: z.string().regex(PRIVATE_KEY_REGEX, 'invalid key'),
+	BACKBLAZE_APPLICATION_KEY: z.string(),
+	BACKBLAZE_BUCKET_NAME: z.string(),
+	BACKBLAZE_ENDPOINT: z.string(),
+	BACKBLAZE_KEY_ID: z.string(),
 });
