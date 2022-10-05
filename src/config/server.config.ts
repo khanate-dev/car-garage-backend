@@ -30,6 +30,10 @@ const parseConfig = (): Config => {
 			REFRESH_TOKEN_AGE,
 			PUBLIC_KEY,
 			PRIVATE_KEY,
+			BACKBLAZE_APPLICATION_KEY,
+			BACKBLAZE_BUCKET_NAME,
+			BACKBLAZE_ENDPOINT,
+			BACKBLAZE_KEY_ID,
 		} = environmentSchema.parse(process.env);
 
 		for (const key of optionalEnvironment) {
@@ -54,6 +58,10 @@ const parseConfig = (): Config => {
 			refreshTokenAge: REFRESH_TOKEN_AGE ?? defaults.refreshTokenAge,
 			publicKey: PUBLIC_KEY,
 			privateKey: PRIVATE_KEY,
+			backblazeApplicationKey: BACKBLAZE_APPLICATION_KEY,
+			backblazeBucketName: BACKBLAZE_BUCKET_NAME,
+			backblazeEndpoint: BACKBLAZE_ENDPOINT,
+			backblazeKeyId: BACKBLAZE_KEY_ID,
 		};
 
 	}
