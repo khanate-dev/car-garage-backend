@@ -24,11 +24,11 @@ export const createReviewHandler: AuthenticatedHandler<CreateReviewSchema> = asy
 ) => {
 	const user = response.locals.user;
 
-	if (request.body.userId && user.role !== 'admin') throw new ApiError(Status.FORBIDDEN);
+	if (user.role !== 'user') throw new ApiError(Status.FORBIDDEN);
 
 	const review = await createReview({
 		...request.body,
-		userId: request.body.userId ?? user._id,
+		userId: user._id,
 	});
 	return {
 		status: Status.CREATED,

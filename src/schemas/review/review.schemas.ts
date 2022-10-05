@@ -13,14 +13,12 @@ const params = z.strictObject({
 });
 
 const body = reviewSansMetaModelSchema.extend({
-	userId: z.string().refine(
-		isValidObjectId,
-		'parameter must be a valid mongo ObjectID'
-	).optional(),
 	bodyTypeId: z.string().refine(
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'
 	),
+}).omit({
+	userId: true,
 });
 
 const response = reviewModelSchema;
