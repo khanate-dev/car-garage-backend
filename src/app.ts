@@ -1,5 +1,5 @@
 import express from 'express';
-import pinoMiddleWare from 'express-pino-logger';
+// import pinoMiddleWare from 'express-pino-logger';
 import helmet from 'helmet';
 import cors from 'cors';
 
@@ -9,7 +9,6 @@ import connectDb from '~/helpers/connect-db';
 import logger from '~/helpers/logger';
 
 import registerRoutes from '~/register-routes';
-
 
 const app = express();
 
