@@ -1,10 +1,10 @@
+import { Blob } from 'node:buffer';
 import { isValidObjectId } from 'mongoose';
 import z from 'zod';
 
 import { createRouteSchema } from '~/helpers/schema';
 
 import { productModelSchema, productSansMetaModelSchema } from '~/models';
-
 
 const params = z.strictObject({
 	_id: z.string().refine(
@@ -22,7 +22,7 @@ const body = productSansMetaModelSchema.extend({
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'
 	).optional(),
-	image: z.string(),
+	image: z.instanceof(Blob),
 	bodyTypeId: z.string().refine(
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'

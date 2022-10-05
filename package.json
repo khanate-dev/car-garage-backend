@@ -15,6 +15,7 @@
 	},
 	"dependencies": {
 		"b2-js": "^1.2.4",
+		"@types/sharp": "^0.31.0",
 		"cors": "^2.8.5",
 		"dayjs": "^1.11.5",
 		"dotenv": "^16.0.3",
@@ -24,6 +25,7 @@
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^6.6.5",
 		"pino": "^8.6.1",
+		"sharp": "^0.31.1",
 		"zod": "^3.19.1"
 	},
 	"devDependencies": {
