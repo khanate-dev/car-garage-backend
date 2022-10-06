@@ -1,4 +1,3 @@
-import { File } from '~/types/file';
 import { isValidObjectId } from 'mongoose';
 import z from 'zod';
 
