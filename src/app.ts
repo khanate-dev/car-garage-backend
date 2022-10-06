@@ -2,6 +2,8 @@ import express from 'express';
 // // import pinoMiddleWare from 'express-pino-logger';
 import helmet from 'helmet';
 import cors from 'cors';
+import { tmpdir } from 'os';
+import formData from 'express-form-data';
 
 import { config } from '~/config';
 
@@ -24,6 +26,17 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// parse data with connect-multiparty.
+app.use(formData.parse({
+	autoClean: true,
+	uploadDir: tmpdir(),
+}));
+// delete from the request all empty files (size == 0)
+app.use(formData.format());
+// union the body and the files
+app.use(formData.union());
+
 app.use(helmet());
 
 // ! Typescript Weird Error

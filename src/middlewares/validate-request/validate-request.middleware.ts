@@ -12,6 +12,7 @@ const validateRequest = (
 ): Middleware => (
 	(request, response, next) => {
 		try {
+
 			schema.omit({ response: true }).parse({
 				body: request.body,
 				query: request.query,

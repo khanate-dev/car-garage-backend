@@ -1,4 +1,9 @@
+import { readFileSync } from 'fs';
+import { randomUUID } from 'crypto';
 import { ApiError } from '~/errors';
+import { uploadToB2 } from '~/helpers/backblaze';
+import { sharpifyImage } from '~/helpers/image';
+import logger from '~/helpers/logger';
 
 import {
 	CreateProductSchema,
@@ -22,8 +27,15 @@ export const createProductHandler: AuthenticatedHandler<CreateProductSchema> = a
 	request,
 	response
 ) => {
+
+	const image = await uploadToB2(
+		`${randomUUID()}.png`,
+		(await sharpifyImage(readFileSync(request.body.image.path)))
+	);
+
 	const product = await createProduct({
 		...request.body,
+		image,
 		sellerId: response.locals.user._id,
 	});
 	return {
