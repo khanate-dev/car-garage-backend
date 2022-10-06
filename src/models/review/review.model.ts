@@ -3,11 +3,21 @@ import z from 'zod';
 
 import { getModelSchema } from '~/helpers/schema';
 
+export enum Rating {
+	One = 1,
+	Two = 2,
+	Three = 3,
+	Four = 4,
+	Five = 5,
+}
+
+export const ratings = Object.values(Rating) as Rating[];
+
 export const {
 	sansMetaModelSchema: reviewSansMetaModelSchema,
 	modelSchema: reviewModelSchema,
 } = getModelSchema({
-	rating: z.number().min(1).max(5),
+	rating: z.nativeEnum(Rating),
 	description: z.string().optional(),
 	userId: z.instanceof(Types.ObjectId),
 	bodyTypeId: z.instanceof(Types.ObjectId),
