@@ -58,10 +58,12 @@ const parseConfig = (): Config => {
 			refreshTokenAge: REFRESH_TOKEN_AGE ?? defaults.refreshTokenAge,
 			publicKey: PUBLIC_KEY,
 			privateKey: PRIVATE_KEY,
-			backblazeApplicationKey: BACKBLAZE_APPLICATION_KEY,
-			backblazeBucketName: BACKBLAZE_BUCKET_NAME,
-			backblazeEndpoint: BACKBLAZE_ENDPOINT,
-			backblazeKeyId: BACKBLAZE_KEY_ID,
+			backBlaze: {
+				applicationKey: BACKBLAZE_APPLICATION_KEY,
+				bucketName: BACKBLAZE_BUCKET_NAME,
+				endpoint: BACKBLAZE_ENDPOINT,
+				keyId: BACKBLAZE_KEY_ID,
+			},
 		};
 
 	}

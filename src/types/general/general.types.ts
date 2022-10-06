@@ -12,10 +12,12 @@ export interface Config {
 	refreshTokenAge: string,
 	publicKey: string,
 	privateKey: string,
-	backblazeApplicationKey: string,
-	backblazeBucketName: string,
-	backblazeEndpoint: string,
-	backblazeKeyId: string,
+	backBlaze: {
+		applicationKey: string,
+		bucketName: string,
+		endpoint: string,
+		keyId: string,
+	},
 }
 
 export type ReadableTypeOf = (
