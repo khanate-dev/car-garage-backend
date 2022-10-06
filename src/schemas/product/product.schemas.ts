@@ -1,4 +1,4 @@
-import { Blob } from 'node:buffer';
+import { File } from '~/types/file';
 import { isValidObjectId } from 'mongoose';
 import z from 'zod';
 
@@ -14,6 +14,18 @@ const params = z.strictObject({
 });
 
 const body = productSansMetaModelSchema.extend({
+	minPrice: z.preprocess(
+		value => parseInt(z.string().parse(value), 10),
+		z.number().positive()
+	),
+	maxPrice: z.preprocess(
+		value => parseInt(z.string().parse(value), 10),
+		z.number().positive()
+	),
+	isFeatured: z.preprocess(
+		value => value === 'true',
+		z.boolean()
+	),
 	makeTypeId: z.string().refine(
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'
@@ -22,7 +34,18 @@ const body = productSansMetaModelSchema.extend({
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'
 	).optional(),
-	image: z.instanceof(Blob),
+	image: z.object({
+		fieldName: z.string(),
+		originalFilename: z.string(),
+		path: z.string(),
+		headers: z.object({
+			'content-disposition': z.string(),
+			'content-type': z.string(),
+		}),
+		size: z.number(),
+		name: z.string(),
+		type: z.string(),
+	}),
 	bodyTypeId: z.string().refine(
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'
