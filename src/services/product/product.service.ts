@@ -53,9 +53,7 @@ export const findAndUpdateProduct = async (
 		query,
 		update,
 		options
-	)
-		.populate('seller buyer bodyType makeType model', '-_id -password -createdAt -updatedAt -__v')
-		.lean();
+	).lean();
 	return updatedProduct;
 };
 

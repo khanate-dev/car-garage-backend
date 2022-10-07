@@ -47,7 +47,7 @@ export const findAndUpdateModel = async (
 		query,
 		update,
 		options
-	).populate('makeType', '-_id -createdAt -updatedAt -__v').lean();
+	).lean();
 	return updatedModel;
 };
 

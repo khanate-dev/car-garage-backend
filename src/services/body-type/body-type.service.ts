@@ -60,9 +60,7 @@ export const findAndUpdateBodyType = async (
 		query,
 		update,
 		options
-	)
-		.populate(populateOptions)
-		.lean();
+	).lean();
 	return updatedBodyType;
 };
 
