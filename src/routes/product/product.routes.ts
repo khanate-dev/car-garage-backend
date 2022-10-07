@@ -6,7 +6,6 @@ import {
 	getProductsSchema,
 } from '~/schemas/product';
 
-
 import {
 	createProductHandler,
 	deleteProductHandler,

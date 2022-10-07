@@ -3,7 +3,6 @@ import { randomUUID } from 'crypto';
 import { ApiError } from '~/errors';
 import { uploadToB2 } from '~/helpers/backblaze';
 import { sharpifyImage } from '~/helpers/image';
-import logger from '~/helpers/logger';
 
 import {
 	CreateProductSchema,

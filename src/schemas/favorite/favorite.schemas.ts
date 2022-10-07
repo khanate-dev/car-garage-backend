@@ -3,7 +3,7 @@ import z from 'zod';
 
 import { createRouteSchema } from '~/helpers/schema';
 
-import { favoriteModelSchema, favoriteSansMetaModelSchema } from '~/models';
+import { favoriteModelSchema } from '~/models';
 
 const params = z.strictObject({
 	_id: z.string().refine(

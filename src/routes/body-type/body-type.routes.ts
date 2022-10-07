@@ -6,7 +6,6 @@ import {
 	getBodyTypesSchema,
 } from '~/schemas/body-type';
 
-
 import {
 	createBodyTypeHandler,
 	deleteBodyTypeHandler,

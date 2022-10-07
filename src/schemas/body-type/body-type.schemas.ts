@@ -5,7 +5,6 @@ import { createRouteSchema } from '~/helpers/schema';
 
 import { bodyTypeModelSchema, bodyTypeSansMetaModelSchema } from '~/models';
 
-
 const params = z.strictObject({
 	_id: z.string().refine(
 		isValidObjectId,
