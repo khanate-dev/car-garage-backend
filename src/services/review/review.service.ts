@@ -64,9 +64,7 @@ export const findAndUpdateReview = async (
 		query,
 		update,
 		options
-	)
-		.populate(populateOptions)
-		.lean();
+	).lean();
 	return updatedReview;
 };
 
