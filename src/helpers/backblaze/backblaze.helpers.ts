@@ -1,7 +1,6 @@
 import B2 from 'b2-js';
 import { config } from '~/config';
 
-
 // Takes a buffer uploads it to
 export const uploadToB2 = async (name: string, buffer: Buffer): Promise<string> => {
 	const b2 = await B2.authorize({

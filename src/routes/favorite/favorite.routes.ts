@@ -5,7 +5,6 @@ import {
 	getFavoritesSchema,
 } from '~/schemas/favorite';
 
-
 import {
 	createFavoriteHandler,
 	deleteFavoriteHandler,

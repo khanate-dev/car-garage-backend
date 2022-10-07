@@ -6,7 +6,6 @@ import {
 	getMakeTypesSchema,
 } from '~/schemas/make-type';
 
-
 import {
 	createMakeTypeHandler,
 	deleteMakeTypeHandler,

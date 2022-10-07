@@ -6,7 +6,6 @@ import {
 	getModelsSchema,
 } from '~/schemas/model';
 
-
 import {
 	createModelHandler,
 	deleteModelHandler,

@@ -1,4 +1,3 @@
-import { Blob } from 'node:buffer';
 import sharp from 'sharp';
 
 export const sharpifyImage = async (

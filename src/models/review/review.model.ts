@@ -55,7 +55,6 @@ const reviewSchema = new Schema<Review>(
 	}
 );
 
-
 reviewSchema.virtual('bodyType', {
 	ref: 'BodyType',
 	localField: 'bodyTypeId',

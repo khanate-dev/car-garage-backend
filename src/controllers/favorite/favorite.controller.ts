@@ -44,7 +44,6 @@ export const getFavoritesHandler: AuthenticatedHandler<GetFavoritesSchema> = asy
 
 };
 
-
 export const getFavoriteHandler: AuthenticatedHandler<GetFavoriteSchema> = async (
 	request,
 	response
@@ -60,7 +59,6 @@ export const getFavoriteHandler: AuthenticatedHandler<GetFavoriteSchema> = async
 	return favorite;
 
 };
-
 
 export const deleteFavoriteHandler: AuthenticatedHandler<DeleteFavoriteSchema> = async (
 	request,
