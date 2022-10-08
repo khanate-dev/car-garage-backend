@@ -33,7 +33,7 @@ const body = productSansMetaModelSchema.extend({
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'
 	).optional(),
-	image: z.object({
+	image: z.string().url().or(z.object({
 		fieldName: z.string(),
 		originalFilename: z.string(),
 		path: z.string(),
@@ -44,7 +44,7 @@ const body = productSansMetaModelSchema.extend({
 		size: z.number(),
 		name: z.string(),
 		type: z.string(),
-	}),
+	})),
 	bodyTypeId: z.string().refine(
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'

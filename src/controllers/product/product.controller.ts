@@ -27,9 +27,14 @@ export const createProductHandler: AuthenticatedHandler<CreateProductSchema> = a
 	response
 ) => {
 
-	const image = await uploadToB2(
-		`${randomUUID()}.png`,
-		(await sharpifyImage(readFileSync(request.body.image.path)))
+	const image = (
+		(request.body.image instanceof Object) ?
+			await uploadToB2(
+				`${randomUUID()}.png`,
+				(await sharpifyImage(readFileSync(request.body.image.path)))
+			)
+			:
+			request.body.image
 	);
 
 	const product = await createProduct({
@@ -78,6 +83,16 @@ export const updateProductHandler: AuthenticatedHandler<UpdateProductSchema> = a
 	response
 ) => {
 
+	const image = (
+		(request.body.image instanceof Object) ?
+			await uploadToB2(
+				`${randomUUID()}.png`,
+				(await sharpifyImage(readFileSync(request.body.image.path)))
+			)
+			:
+			request.body.image
+	);
+
 	const userId = response.locals.user._id;
 	const _id = request.params._id;
 	const product = await findProduct({
@@ -90,7 +105,10 @@ export const updateProductHandler: AuthenticatedHandler<UpdateProductSchema> = a
 
 	const updatedProduct = await findAndUpdateProduct(
 		{ _id },
-		request.body,
+		{
+			...request.body,
+			image,
+		},
 		{ new: true }
 	);
 
