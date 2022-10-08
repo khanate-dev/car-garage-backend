@@ -29,6 +29,10 @@ const body = productSansMetaModelSchema.extend({
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'
 	),
+	buyerId: z.string().refine(
+		isValidObjectId,
+		'parameter must be a valid mongo ObjectID'
+	).optional(),
 	modelId: z.string().refine(
 		isValidObjectId,
 		'parameter must be a valid mongo ObjectID'
